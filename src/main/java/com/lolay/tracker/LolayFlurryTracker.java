@@ -1,6 +1,6 @@
 /*
  * Created by Lolay, Inc.
- * Copyright 2011 MyLife, Inc. All rights reserved.
+ * Copyright 2011 Lolay, Inc. All rights reserved.
  */
 package com.lolay.tracker;
 
@@ -17,16 +17,13 @@ public class LolayFlurryTracker extends LolayBaseTracker {
     private static Logger logger = Logger.getLogger("com.lolay.tracker");
     private String key;
     private String version;
-
+    private String platform;
     private Map<Object, Object> globalParametersValue = Collections.emptyMap();
-
-    public LolayFlurryTracker(String key) {
-        this.key = key;
-    }
 
     public LolayFlurryTracker(String key, String version) {
         this.key = key;
         this.version = version;
+        platform = clientPlatform();
     }
 
     @Override
@@ -105,18 +102,21 @@ public class LolayFlurryTracker extends LolayBaseTracker {
             flurryParameters.putAll(globalParametersValue);
         }
 
-        String manufacturer = Build.MANUFACTURER;
-        String product = Build.PRODUCT;
-        String model = Build.MODEL;
-        String systemVersion = Build.VERSION.RELEASE;
-        int sdk = Build.VERSION.SDK_INT;
-        String platform = String.format("%s %s (%s): %s %d", manufacturer, product, model, systemVersion, sdk);
         flurryParameters.put("platform", platform);
 
         // flurry for android tracks locale automatically.
         //[flurryParameters setObject:[[NSLocale currentLocale] localeIdentifier] forKey:@"locale"];
 
         return flurryParameters;
+    }
+
+    private String clientPlatform() {
+        String manufacturer = Build.MANUFACTURER;
+        String product = Build.PRODUCT;
+        String model = Build.MODEL;
+        String systemVersion = Build.VERSION.RELEASE;
+        int sdk = Build.VERSION.SDK_INT;
+        return String.format("%s %s (%s): %s %d", manufacturer, product, model, systemVersion, sdk);
     }
 
 }

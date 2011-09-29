@@ -1,6 +1,6 @@
 /*
  * Created by Lolay, Inc.
- * Copyright 2011 CityGrid Media, LLC All rights reserved.
+ * Copyright 2011 Lolay, LLC All rights reserved.
  */
 package com.lolay.tracker;
 
