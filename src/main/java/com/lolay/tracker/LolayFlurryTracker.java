@@ -15,15 +15,12 @@ import java.util.logging.Logger;
 
 public class LolayFlurryTracker extends LolayBaseTracker {
     private static Logger logger = Logger.getLogger("com.lolay.tracker");
-    private String key;
-    private String version;
     private String platform;
     private Map<Object, Object> globalParametersValue = Collections.emptyMap();
 
-    public LolayFlurryTracker(String key, String version) {
-        this.key = key;
-        this.version = version;
+    public LolayFlurryTracker(String version) {
         platform = clientPlatform();
+        FlurryAgent.setVersionName(version);
     }
 
     @Override
