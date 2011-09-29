@@ -14,7 +14,7 @@ public interface LolayTracker {
     void setState(String state);
     void setZip(String zip);
     void setCampaign(String campaign);
-    void setGlobalParameters(Map<String, Object> globalParameters);
+    void setGlobalParameters(Map<Object, Object> globalParameters);
     void logEvent(String name);
     void logEventWithParams(String name, Map<Object, Object> parameters);
     void logEventWithObjectsAndKeys(String name, Object... objectsAndKeys);

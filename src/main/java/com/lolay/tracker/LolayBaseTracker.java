@@ -46,7 +46,7 @@ public class LolayBaseTracker implements LolayTracker {
     }
 
     @Override
-    public void setGlobalParameters(Map<String, Object> globalParameters) {
+    public void setGlobalParameters(Map<Object, Object> globalParameters) {
         // do nothing
     }
 
