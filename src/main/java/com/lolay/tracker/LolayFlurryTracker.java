@@ -78,6 +78,11 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         FlurryAgent.onError(exception.getMessage(), exception.getMessage(), exception.getClass().getSimpleName());
     }
 
+    @Override
+    public void logException(String errorId, String message, String errorClass) {
+        FlurryAgent.onError(errorId,message, errorClass);
+    }
+
     public Map<Object, Object> getGlobalParametersValue() {
         return globalParametersValue;
     }

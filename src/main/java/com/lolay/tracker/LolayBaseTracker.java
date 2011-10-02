@@ -106,4 +106,9 @@ public class LolayBaseTracker implements LolayTracker {
     public void logException(Exception exception) {
         // do nothing
     }
+
+    @Override
+    public void logException(String errorId, String message, String errorClass) {
+        // do nothing
+    }
 }
