@@ -11,10 +11,8 @@ import com.flurry.android.FlurryAgent;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class LolayFlurryTracker extends LolayBaseTracker {
-    private static Logger logger = Logger.getLogger("com.lolay.tracker");
     private String platform;
     private Map<Object, Object> globalParametersValue = Collections.emptyMap();
 
