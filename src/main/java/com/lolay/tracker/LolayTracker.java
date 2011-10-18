@@ -22,6 +22,5 @@ public interface LolayTracker {
     void logPageWithParams(String name, Map<Object, Object> parameters);
     void logPageWithObjectsAndKeys(String name, Object... objectsAndKeys);
     void logException(Exception exception);
-    void logException(String errorId, String message, String errorClass);
-
+    void logException(String errorId, String message, Throwable throwable);
 }
