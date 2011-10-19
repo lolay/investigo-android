@@ -103,7 +103,7 @@ public class LolayBaseTracker implements LolayTracker {
     }
 
     @Override
-    public void logException(Exception exception) {
+    public void logException(Throwable throwable) {
         // do nothing
     }
 

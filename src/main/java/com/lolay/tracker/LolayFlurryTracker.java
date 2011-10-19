@@ -72,8 +72,8 @@ public class LolayFlurryTracker extends LolayBaseTracker {
     }
 
     @Override
-    public void logException(Exception exception) {
-        FlurryAgent.onError(exception.getMessage(), exception.getMessage(), exception.getClass().getSimpleName());
+    public void logException(Throwable throwable) {
+        FlurryAgent.onError(throwable.getMessage(), throwable.getMessage(), throwable.getClass().getSimpleName());
     }
 
     @Override

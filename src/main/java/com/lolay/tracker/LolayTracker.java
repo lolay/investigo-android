@@ -6,21 +6,20 @@ package com.lolay.tracker;/*
 import java.util.Map;
 
 public interface LolayTracker {
-    
-    void setIdentifier(String identifier);
-    void setVersion(String version);
-    void setAge(int age);
-    void setGender(LolayTrackerGender gender);
-    void setState(String state);
-    void setZip(String zip);
-    void setCampaign(String campaign);
-    void setGlobalParameters(Map<Object, Object> globalParameters);
-    void logEvent(String name);
-    void logEventWithParams(String name, Map<Object, Object> parameters);
-    void logEventWithObjectsAndKeys(String name, Object... objectsAndKeys);
-    void logPage(String name);
-    void logPageWithParams(String name, Map<Object, Object> parameters);
-    void logPageWithObjectsAndKeys(String name, Object... objectsAndKeys);
-    void logException(Exception exception);
-    void logException(String errorId, String message, Throwable throwable);
+    public void setIdentifier(String identifier);
+    public void setVersion(String version);
+    public void setAge(int age);
+    public void setGender(LolayTrackerGender gender);
+    public void setState(String state);
+    public void setZip(String zip);
+    public void setCampaign(String campaign);
+    public void setGlobalParameters(Map<Object, Object> globalParameters);
+    public void logEvent(String name);
+    public void logEventWithParams(String name, Map<Object, Object> parameters);
+    public void logEventWithObjectsAndKeys(String name, Object... objectsAndKeys);
+    public void logPage(String name);
+    public void logPageWithParams(String name, Map<Object, Object> parameters);
+    public void logPageWithObjectsAndKeys(String name, Object... objectsAndKeys);
+    public void logException(Throwable exception);
+    public void logException(String errorId, String message, Throwable throwable);
 }
