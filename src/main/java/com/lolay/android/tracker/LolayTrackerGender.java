@@ -2,7 +2,7 @@
  * Created by Lolay, Inc.
  * Copyright 2011 Lolay, LLC All rights reserved.
  */
-package com.lolay.tracker;
+package com.lolay.android.tracker;
 
 public enum LolayTrackerGender {
     UNKNOWN(0), MALE(1), FEMALE(2);

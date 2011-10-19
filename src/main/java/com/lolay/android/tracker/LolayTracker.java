@@ -1,4 +1,4 @@
-package com.lolay.tracker;/*
+package com.lolay.android.tracker;/*
  * Created by Lolay, Inc.
  * Copyright 2011 Lolay, Inc. All rights reserved.
  */

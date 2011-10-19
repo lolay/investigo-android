@@ -2,7 +2,7 @@
  * Created by Lolay, Inc.
  * Copyright 2011 Lolay, Inc. All rights reserved.
  */
-package com.lolay.tracker;
+package com.lolay.android.tracker;
 
 import android.os.Build;
 import com.flurry.android.Constants;
