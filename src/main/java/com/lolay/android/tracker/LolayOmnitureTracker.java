@@ -92,7 +92,10 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     }
     
     private Hashtable<String,String> stringHashtable(Map<Object,Object> objectMap) {
-    	Hashtable<String,String> stringMap = new Hashtable<String,String>(globalParameters.size());
+    	if (this.globalParameters == null) {
+    		return null;
+    	}
+    	Hashtable<String,String> stringMap = new Hashtable<String,String>(this.globalParameters.size());
     	for (Map.Entry<Object, Object> entry : objectMap.entrySet()) {
     		Object keyObject = entry.getKey();
     		Object valueObject = entry.getValue();
