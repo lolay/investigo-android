@@ -4,23 +4,49 @@
  */
 package com.lolay.android.tracker;
 
+import android.app.Application;
 import android.os.Build;
+import android.util.Log;
+
 import com.flurry.android.Constants;
 import com.flurry.android.FlurryAgent;
 
+import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LolayFlurryTracker extends LolayBaseTracker {
+	private static final String TAG = LolayFlurryTracker.class.getSimpleName();
+	private WeakReference<Application> applicationReference;
+	private String apiKey;
     private String platform;
     private Map<Object, Object> globalParametersValue = Collections.emptyMap();
 
-    public LolayFlurryTracker(String version) {
-        platform = clientPlatform();
+    public LolayFlurryTracker(Application application, String apiKey, String version) {
+    	this.applicationReference = new WeakReference<Application>(application);
+    	this.apiKey = apiKey;
+        this.platform = clientPlatform();
         FlurryAgent.setVersionName(version);
+		Log.i(TAG, String.format("Intialized apiKey=%s,platform=%s", this.apiKey, this.platform));
     }
 
+    @Override
+	public void startSession() {
+    	Application application = applicationReference.get();
+    	if (application != null) {
+            FlurryAgent.onStartSession(application, this.apiKey);
+    	}
+	}
+	
+    @Override
+	public void endSession() {
+    	Application application = applicationReference.get();
+    	if (application != null) {
+            FlurryAgent.onEndSession(application);
+    	}
+	}
+	
     @Override
     public void setIdentifier(String identifier) {
         FlurryAgent.setUserId(identifier);
@@ -103,10 +129,7 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         }
 
         flurryParameters.put("platform", platform);
-
-        // flurry for android tracks locale automatically.
-        //[flurryParameters setObject:[[NSLocale currentLocale] localeIdentifier] forKey:@"locale"];
-
+        
         return flurryParameters;
     }
 
@@ -118,5 +141,4 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         int sdk = Build.VERSION.SDK_INT;
         return String.format("%s %s (%s): %s %d", manufacturer, product, model, systemVersion, sdk);
     }
-
 }

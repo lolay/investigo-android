@@ -8,8 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LolayBaseTracker implements LolayTracker {
-
-
+    @Override
+	public void startSession() {
+        // do nothing
+	}
+	
+    @Override
+	public void endSession() {
+        // do nothing
+	}
+	
     @Override
     public void setIdentifier(String identifier) {
         // do nothing
@@ -43,6 +51,11 @@ public class LolayBaseTracker implements LolayTracker {
     @Override
     public void setCampaign(String campaign) {
         // do nothing
+    }
+    
+    @Override
+    public void setChannel(String channel) {
+    	// do nothing
     }
 
     @Override

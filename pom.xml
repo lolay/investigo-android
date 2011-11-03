@@ -112,6 +112,12 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+		<dependency>
+			<groupId>com.omniture</groupId>
+			<artifactId>appmeasurement-android</artifactId>
+			<version>2011.6.30</version>
+			<optional>true</optional>
+		</dependency>
   </dependencies>
 	<dependencyManagement>
 		<dependencies>

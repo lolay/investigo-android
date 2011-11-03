@@ -6,6 +6,8 @@ package com.lolay.android.tracker;/*
 import java.util.Map;
 
 public interface LolayTracker {
+	public void startSession();
+	public void endSession();
     public void setIdentifier(String identifier);
     public void setVersion(String version);
     public void setAge(int age);
@@ -13,6 +15,7 @@ public interface LolayTracker {
     public void setState(String state);
     public void setZip(String zip);
     public void setCampaign(String campaign);
+    public void setChannel(String channel);
     public void setGlobalParameters(Map<Object, Object> globalParameters);
     public void logEvent(String name);
     public void logEventWithParams(String name, Map<Object, Object> parameters);
