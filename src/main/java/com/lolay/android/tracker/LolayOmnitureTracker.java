@@ -91,6 +91,11 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     	}
     }
     
+    @Override
+    public String getTrackerId() {
+    	return s.visitorID;
+    }
+    
     private Hashtable<String,String> stringHashtable(Map<Object,Object> objectMap) {
     	if (this.globalParameters == null) {
     		return null;
@@ -125,7 +130,7 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     
     @Override
     public void logEvent(String name) {
-    	s.pageURL = name;
+    	s.pageName = name;
     	s.track();
     }
     
@@ -143,31 +148,31 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
 
     @Override
     public void logEventWithParams(String name, Map<Object,Object> parameters) {
-    	s.pageURL = name;
+    	s.pageName = name;
     	s.track(mergeParameters(parameters));
     }
 
     @Override
     public void logPage(String name) {
-    	s.pageURL = name;
+    	s.pageName = name;
     	s.track();
     }
 
     @Override
     public void logPageWithParams(String name, Map<Object,Object> parameters) {
-    	s.pageURL = name;
+    	s.pageName = name;
     	s.track(mergeParameters(parameters));
     }
 
     @Override
     public void logException(Throwable throwable) {
-    	s.pageURL = "Exception";
+    	s.pageName = "Exception";
     	s.track();
     }
 
     @Override
     public void logException(String errorId, String message, Throwable throwable) {
-    	s.pageURL = "Exception";
+    	s.pageName = "Exception";
     	s.track();
     }
     

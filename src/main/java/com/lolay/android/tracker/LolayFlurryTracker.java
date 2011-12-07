@@ -75,6 +75,11 @@ public class LolayFlurryTracker extends LolayBaseTracker {
                 break;
         }
     }
+    
+    @Override
+    public String getTrackerId() {
+    	return FlurryAgent.getPhoneId();
+    }
 
     @Override
     public void logEvent(String name) {

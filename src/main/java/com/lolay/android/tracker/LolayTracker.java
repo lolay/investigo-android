@@ -25,4 +25,6 @@ public interface LolayTracker {
     public void logPageWithObjectsAndKeys(String name, Object... objectsAndKeys);
     public void logException(Throwable exception);
     public void logException(String errorId, String message, Throwable throwable);
+    public String getTrackerId();
+    public String getTrackerId(Class<?> clazz);
 }

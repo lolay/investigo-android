@@ -82,6 +82,30 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     }
 
     @Override
+    public String getTrackerId() {
+    	for (LolayTracker tracker : this.trackers) {
+    		String id = tracker.getTrackerId();
+    		if (id != null) {
+    			return id;
+    		}
+    	}
+    	
+    	return null;
+    }
+
+    @Override
+    public String getTrackerId(Class<?> clazz) {
+    	for (LolayTracker tracker : this.trackers) {
+    		String id = tracker.getTrackerId(clazz);
+    		if (id != null) {
+    			return id;
+    		}
+    	}
+    	
+    	return null;
+    }
+    
+    @Override
     public void setGlobalParameters(Map<Object, Object> globalParameters) {
     	for (LolayTracker tracker : this.trackers) {
     		tracker.setGlobalParameters(globalParameters);

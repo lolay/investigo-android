@@ -124,4 +124,17 @@ public class LolayBaseTracker implements LolayTracker {
     public void logException(String errorId, String message, Throwable throwable) {
         // do nothing
     }
+
+    @Override
+    public String getTrackerId() {
+    	return null;
+    }
+    
+    @Override
+    public String getTrackerId(Class<?> clazz) {
+    	if (clazz.isInstance(this)) {
+    		return getTrackerId();
+    	}
+    	return null;
+    }
 }
