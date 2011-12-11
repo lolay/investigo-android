@@ -5,7 +5,7 @@
 	<artifactId>lolay-investigo</artifactId>
 	<packaging>jar</packaging>
 	<name>Lolay Mobile Tracking Library</name>
-	<version>2-SNAPSHOT</version>
+	<version>2</version>
 	<scm>
 		<connection>scm:git:git://github.com/lolay/investigo-android.git</connection>
 		<developerConnection>scm:git:git@github.com:lolay/investigo-android.git</developerConnection>
