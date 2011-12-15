@@ -64,6 +64,16 @@ public class LolayBaseTracker implements LolayTracker {
     }
 
     @Override
+    public void setGlobalParameter(Object key, Object object) {
+        // do nothing
+    }
+    
+    @Override
+    public void removeGlobalParameter(Object key) {
+        // do nothing
+    }
+    
+    @Override
     public void logEvent(String name) {
         // do nothing
     }

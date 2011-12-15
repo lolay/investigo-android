@@ -17,6 +17,8 @@ public interface LolayTracker {
     public void setCampaign(String campaign);
     public void setChannel(String channel);
     public void setGlobalParameters(Map<Object, Object> globalParameters);
+    public void setGlobalParameter(Object key, Object object);
+    public void removeGlobalParameter(Object key);
     public void logEvent(String name);
     public void logEventWithParams(String name, Map<Object, Object> parameters);
     public void logEventWithObjectsAndKeys(String name, Object... objectsAndKeys);

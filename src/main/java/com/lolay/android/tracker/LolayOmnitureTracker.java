@@ -4,6 +4,7 @@
  */
 package com.lolay.android.tracker;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -100,6 +101,9 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     	if (this.globalParameters == null) {
     		return null;
     	}
+    	if (objectMap == null) {
+    		return this.globalParameters;
+    	}
     	Hashtable<String,String> stringMap = new Hashtable<String,String>(this.globalParameters.size());
     	for (Map.Entry<Object, Object> entry : objectMap.entrySet()) {
     		Object keyObject = entry.getKey();
@@ -110,6 +114,19 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     		stringMap.put(key, value);
     	}
     	return stringMap;
+    }
+    
+    private Map<Object,Object> objectMap(Hashtable<String,String> hashtable) {
+    	if (hashtable == null) {
+    		return null;
+    	}
+    	
+    	Map<Object,Object> map = new HashMap<Object,Object>(hashtable.size());
+    	for (Map.Entry<String,String> entry : hashtable.entrySet()) {
+    		map.put(entry.getKey(), entry.getValue());
+    	}
+    	
+    	return map;
     }
 
     @Override
@@ -122,10 +139,35 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     
     @Override
     public void setGlobalParameters(Map<Object, Object> globalParameters) {
+    	this.globalParameters = globalParameters == null ? null : stringHashtable(globalParameters);
     	this.globalParameters = stringHashtable(globalParameters);
     	if (delegate != null) {
     		delegate.globalParametersWasSet(this, globalParameters);
     	}
+    }
+    
+    @Override
+    public void setGlobalParameter(Object key, Object object) {
+        if (this.globalParameters == null) {
+        	this.globalParameters = new Hashtable<String,String>();
+        }
+        
+        this.globalParameters.put(key.toString(), object.toString());
+        
+    	if (delegate != null) {
+    		delegate.globalParametersWasSet(this, objectMap(this.globalParameters));
+    	}
+    }
+    
+    @Override
+    public void removeGlobalParameter(Object key) {
+        if (this.globalParameters != null) {
+        	this.globalParameters.remove(key);
+        	
+        	if (delegate != null) {
+        		delegate.globalParametersWasSet(this, objectMap(this.globalParameters));
+        	}
+        }
     }
     
     @Override
@@ -149,7 +191,12 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     @Override
     public void logEventWithParams(String name, Map<Object,Object> parameters) {
     	s.pageName = name;
-    	s.track(mergeParameters(parameters));
+    	Hashtable<String,String> mergedParameters = mergeParameters(parameters);
+    	if (mergedParameters != null) {
+        	s.track(mergedParameters);
+    	} else {
+    		s.track();
+    	}
     }
 
     @Override
@@ -161,7 +208,12 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     @Override
     public void logPageWithParams(String name, Map<Object,Object> parameters) {
     	s.pageName = name;
-    	s.track(mergeParameters(parameters));
+    	Hashtable<String,String> mergedParameters = mergeParameters(parameters);
+    	if (mergedParameters != null) {
+        	s.track(mergedParameters);
+    	} else {
+    		s.track();
+    	}
     }
 
     @Override

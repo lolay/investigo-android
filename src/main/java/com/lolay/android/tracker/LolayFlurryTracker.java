@@ -21,7 +21,7 @@ public class LolayFlurryTracker extends LolayBaseTracker {
 	private WeakReference<Application> applicationReference;
 	private String apiKey;
     private String platform;
-    private Map<Object, Object> globalParametersValue = Collections.emptyMap();
+    private Map<Object, Object> globalParametersValue;
 
     public LolayFlurryTracker(Application application, String apiKey, String version) {
     	this.applicationReference = new WeakReference<Application>(application);
@@ -112,24 +112,36 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         FlurryAgent.onError(errorId,message, throwable.getClass().getName());
     }
 
-    public Map<Object, Object> getGlobalParametersValue() {
-        return globalParametersValue;
-    }
-
     public void setGlobalParametersValue(Map<Object, Object> globalParametersValue) {
         this.globalParametersValue = globalParametersValue;
     }
 
+    @Override
+    public void setGlobalParameter(Object key, Object object) {
+        if (this.globalParametersValue == null) {
+        	this.globalParametersValue = new HashMap<Object,Object>();
+        }
+        
+        this.globalParametersValue.put(key, object);
+    }
+    
+    @Override
+    public void removeGlobalParameter(Object key) {
+        if (this.globalParametersValue != null) {
+        	this.globalParametersValue.remove(key);
+        }
+    }
+    
     Map<Object, Object> buildParameters(Map<Object, Object> parameters) {
         Map<Object, Object> flurryParameters;
 
         if (parameters == null) {
-            flurryParameters = new HashMap<Object, Object>(1 + globalParametersValue.size());
+            flurryParameters = new HashMap<Object, Object>(1 + (globalParametersValue != null ? globalParametersValue.size() : 0));
         } else {
             flurryParameters = parameters;
         }
 
-        if (!getGlobalParametersValue().isEmpty()) {
+        if (globalParametersValue != null && !globalParametersValue.isEmpty()) {
             flurryParameters.putAll(globalParametersValue);
         }
 

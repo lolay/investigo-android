@@ -113,6 +113,20 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     }
 
     @Override
+    public void setGlobalParameter(Object key, Object object) {
+    	for (LolayTracker tracker : this.trackers) {
+    		tracker.setGlobalParameter(key, object);
+    	}
+    }
+    
+    @Override
+    public void removeGlobalParameter(Object key) {
+    	for (LolayTracker tracker : this.trackers) {
+    		tracker.removeGlobalParameter(key);
+    	}
+    }
+    
+    @Override
     public void logEvent(String name) {
     	for (LolayTracker tracker : this.trackers) {
     		tracker.logEvent(name);
