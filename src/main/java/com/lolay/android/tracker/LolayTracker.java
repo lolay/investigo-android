@@ -10,7 +10,7 @@ import java.util.Map;
 public interface LolayTracker {
 	public void startSession();
 	public void endSession();
-	public void startSession(Context context, String apiKey);
+	public void startSession(Context context);
 	public void endSession(Context context);
     public void setIdentifier(String identifier);
     public void setVersion(String version);

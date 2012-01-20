@@ -21,7 +21,7 @@ public class LolayBaseTracker implements LolayTracker {
 	}
 
     @Override
-    public void startSession(Context context, String apiKey) {
+    public void startSession(Context context) {
         // do nothing
     }
 

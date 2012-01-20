@@ -34,9 +34,9 @@ public class LolayMultipleTracker extends LolayBaseTracker {
 	}
 
     @Override
-    public void startSession(Context context, String apiKey) {
+    public void startSession(Context context) {
         for (LolayTracker tracker : this.trackers) {
-            tracker.startSession(context, apiKey);
+            tracker.startSession(context);
         }
     }
 

@@ -13,7 +13,6 @@ import com.flurry.android.Constants;
 import com.flurry.android.FlurryAgent;
 
 import java.lang.ref.WeakReference;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,8 +48,8 @@ public class LolayFlurryTracker extends LolayBaseTracker {
 	}
 
     @Override
-    public void startSession(Context context, String apiKey) {
-        FlurryAgent.onStartSession(context, apiKey);
+    public void startSession(Context context) {
+        FlurryAgent.onStartSession(context, this.apiKey);
     }
 
     @Override
