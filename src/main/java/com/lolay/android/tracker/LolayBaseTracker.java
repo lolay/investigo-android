@@ -4,6 +4,8 @@
  */
 package com.lolay.android.tracker;
 
+import android.content.Context;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +19,17 @@ public class LolayBaseTracker implements LolayTracker {
 	public void endSession() {
         // do nothing
 	}
-	
+
+    @Override
+    public void startSession(Context context, String apiKey) {
+        // do nothing
+    }
+
+    @Override
+    public void endSession(Context context) {
+        // do nothing
+    }
+
     @Override
     public void setIdentifier(String identifier) {
         // do nothing

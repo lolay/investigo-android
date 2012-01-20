@@ -5,6 +5,7 @@
 package com.lolay.android.tracker;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
@@ -46,7 +47,17 @@ public class LolayFlurryTracker extends LolayBaseTracker {
             FlurryAgent.onEndSession(application);
     	}
 	}
-	
+
+    @Override
+    public void startSession(Context context, String apiKey) {
+        FlurryAgent.onStartSession(context, apiKey);
+    }
+
+    @Override
+    public void endSession(Context context) {
+        FlurryAgent.onEndSession(context);
+    }
+
     @Override
     public void setIdentifier(String identifier) {
         FlurryAgent.setUserId(identifier);

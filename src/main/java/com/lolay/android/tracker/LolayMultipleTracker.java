@@ -7,6 +7,7 @@ package com.lolay.android.tracker;
 import java.util.Collection;
 import java.util.Map;
 
+import android.content.Context;
 import android.util.Log;
 
 public class LolayMultipleTracker extends LolayBaseTracker {
@@ -31,7 +32,21 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     		tracker.startSession();
     	}
 	}
-	
+
+    @Override
+    public void startSession(Context context, String apiKey) {
+        for (LolayTracker tracker : this.trackers) {
+            tracker.startSession(context, apiKey);
+        }
+    }
+
+    @Override
+    public void endSession(Context context) {
+        for (LolayTracker tracker : this.trackers) {
+            tracker.endSession(context);
+        }
+    }
+
     @Override
     public void setIdentifier(String identifier) {
     	for (LolayTracker tracker : this.trackers) {

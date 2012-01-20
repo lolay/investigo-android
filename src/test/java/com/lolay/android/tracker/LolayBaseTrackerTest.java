@@ -6,8 +6,6 @@ package com.lolay.android.tracker;
 
 import org.junit.Test;
 
-import com.lolay.android.tracker.LolayBaseTracker;
-
 import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
