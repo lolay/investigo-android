@@ -23,14 +23,20 @@ public class LolayFlurryTracker extends LolayBaseTracker {
     private String platform;
     private Map<Object, Object> globalParametersValue;
 
-    public LolayFlurryTracker(Application application, String apiKey, String version) {
+    public LolayFlurryTracker(Application application, String apiKey, String version, Boolean logEnabled, Integer logLevel) {
     	this.applicationReference = new WeakReference<Application>(application);
     	this.apiKey = apiKey;
         this.platform = clientPlatform();
+		FlurryAgent.setLogLevel(logLevel);
+		FlurryAgent.setLogEnabled(logEnabled);
         FlurryAgent.setVersionName(version);
 		Log.i(TAG, String.format("Intialized apiKey=%s,platform=%s", this.apiKey, this.platform));
     }
 
+    public LolayFlurryTracker(Application application, String apiKey, String version) {
+		this(application, apiKey, version, false, 10);
+	}
+	
     @Override
 	public void startSession() {
     	Application application = applicationReference.get();
