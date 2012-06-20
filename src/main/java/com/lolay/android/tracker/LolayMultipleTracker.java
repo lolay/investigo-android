@@ -29,7 +29,7 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     @Override
 	public void endSession() {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.startSession();
+    		tracker.endSession();
     	}
 	}
 
