@@ -6,11 +6,32 @@ package com.lolay.android.tracker;
 
 import java.util.Map;
 
+import android.content.Context;
 import android.util.Log;
 
 public class LolayLogTracker extends LolayBaseTracker {
 	private static final String TAG = LolayLogTracker.class.getSimpleName();
 	
+    @Override
+	public void startSession() {
+    	Log.i(TAG, "Start Session");
+	}
+	
+    @Override
+	public void endSession() {
+    	Log.i(TAG, "End Session");
+	}
+
+    @Override
+    public void startSession(Context context) {
+    	Log.i(TAG, "Start Session Context (" + context.getClass().getName() + ")");
+    }
+
+    @Override
+    public void endSession(Context context) {
+    	Log.i(TAG, "End Session Context (" + context.getClass().getName() + ")");
+    }
+
 	private String buildParameters(Map<Object, Object> parameters) {
 		if (parameters == null || parameters.size() == 0) {
 			return "";
