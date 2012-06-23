@@ -20,34 +20,6 @@ public class LolayMultipleTracker extends LolayBaseTracker {
 	}
 	
     @Override
-	public void startSession() {
-    	for (LolayTracker tracker : this.trackers) {
-    		tracker.startSession();
-    	}
-	}
-	
-    @Override
-	public void endSession() {
-    	for (LolayTracker tracker : this.trackers) {
-    		tracker.endSession();
-    	}
-	}
-
-    @Override
-    public void startSession(Context context) {
-        for (LolayTracker tracker : this.trackers) {
-            tracker.startSession(context);
-        }
-    }
-
-    @Override
-    public void endSession(Context context) {
-        for (LolayTracker tracker : this.trackers) {
-            tracker.endSession(context);
-        }
-    }
-
-    @Override
     public void setIdentifier(String identifier) {
     	for (LolayTracker tracker : this.trackers) {
     		tracker.setIdentifier(identifier);
@@ -142,44 +114,44 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     }
     
     @Override
-    public void logEvent(String name) {
+    public void logEvent(Context context, String name) {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.logEvent(name);
+    		tracker.logEvent(context, name);
     	}
     }
 
     @Override
-    public void logEventWithParams(String name, Map<Object, Object> parameters) {
+    public void logEventWithParams(Context context, String name, Map<Object, Object> parameters) {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.logEventWithParams(name, parameters);
+    		tracker.logEventWithParams(context, name, parameters);
     	}
     }
 
     @Override
-    public void logPage(String name) {
+    public void logPage(Context context, String name) {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.logPage(name);
+    		tracker.logPage(context, name);
     	}
     }
 
     @Override
-    public void logPageWithParams(String name, Map<Object, Object> parameters) {
+    public void logPageWithParams(Context context, String name, Map<Object, Object> parameters) {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.logPageWithParams(name, parameters);
+    		tracker.logPageWithParams(context, name, parameters);
     	}
     }
 
     @Override
-    public void logException(Throwable throwable) {
+    public void logException(Context context, Throwable throwable) {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.logException(throwable);
+    		tracker.logException(context, throwable);
     	}
     }
 
     @Override
-    public void logException(String errorId, String message, Throwable throwable) {
+    public void logException(Context context, String errorId, String message, Throwable throwable) {
     	for (LolayTracker tracker : this.trackers) {
-    		tracker.logException(errorId, message, throwable);
+    		tracker.logException(context, errorId, message, throwable);
     	}
     }
 }

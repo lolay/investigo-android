@@ -11,26 +11,6 @@ import java.util.Map;
 
 public class LolayBaseTracker implements LolayTracker {
     @Override
-	public void startSession() {
-        // do nothing
-	}
-	
-    @Override
-	public void endSession() {
-        // do nothing
-	}
-
-    @Override
-    public void startSession(Context context) {
-        // do nothing
-    }
-
-    @Override
-    public void endSession(Context context) {
-        // do nothing
-    }
-
-    @Override
     public void setIdentifier(String identifier) {
         // do nothing
     }
@@ -86,33 +66,33 @@ public class LolayBaseTracker implements LolayTracker {
     }
     
     @Override
-    public void logEvent(String name) {
+    public void logEvent(Context context, String name) {
         // do nothing
     }
 
     @Override
-    public void logEventWithParams(String name, Map<Object, Object> parameters) {
+    public void logEventWithParams(Context context, String name, Map<Object, Object> parameters) {
         // do nothing
     }
 
     @Override
-    public void logEventWithObjectsAndKeys(String name, Object... objectsAndKeys) {
-        logEventWithParams(name, buildParamsFromObjectArray(objectsAndKeys));
+    public void logEventWithObjectsAndKeys(Context context, String name, Object... objectsAndKeys) {
+        logEventWithParams(context, name, buildParamsFromObjectArray(objectsAndKeys));
     }
 
     @Override
-    public void logPage(String name) {
+    public void logPage(Context context, String name) {
         // do nothing
     }
 
     @Override
-    public void logPageWithParams(String name, Map<Object, Object> parameters) {
+    public void logPageWithParams(Context context, String name, Map<Object, Object> parameters) {
         // do nothing
     }
 
     @Override
-    public void logPageWithObjectsAndKeys(String name, Object... objectsAndKeys) {
-        logPageWithParams(name, buildParamsFromObjectArray(objectsAndKeys));
+    public void logPageWithObjectsAndKeys(Context context, String name, Object... objectsAndKeys) {
+        logPageWithParams(context, name, buildParamsFromObjectArray(objectsAndKeys));
 
     }
 
@@ -138,12 +118,12 @@ public class LolayBaseTracker implements LolayTracker {
     }
 
     @Override
-    public void logException(Throwable throwable) {
+    public void logException(Context context, Throwable throwable) {
         // do nothing
     }
 
     @Override
-    public void logException(String errorId, String message, Throwable throwable) {
+    public void logException(Context context, String errorId, String message, Throwable throwable) {
         // do nothing
     }
 

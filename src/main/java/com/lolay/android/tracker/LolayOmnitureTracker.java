@@ -10,6 +10,7 @@ import java.util.Map;
 
 import android.app.Application;
 
+import android.content.Context;
 import com.omniture.AppMeasurement;
 
 public class LolayOmnitureTracker extends LolayBaseTracker {
@@ -171,7 +172,7 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     }
     
     @Override
-    public void logEvent(String name) {
+    public void logEvent(Context context, String name) {
     	s.pageName = name;
     	s.track();
     }
@@ -189,7 +190,7 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     }
 
     @Override
-    public void logEventWithParams(String name, Map<Object,Object> parameters) {
+    public void logEventWithParams(Context context, String name, Map<Object,Object> parameters) {
     	s.pageName = name;
     	Hashtable<String,String> mergedParameters = mergeParameters(parameters);
     	if (mergedParameters != null) {
@@ -200,13 +201,13 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     }
 
     @Override
-    public void logPage(String name) {
+    public void logPage(Context context, String name) {
     	s.pageName = name;
     	s.track();
     }
 
     @Override
-    public void logPageWithParams(String name, Map<Object,Object> parameters) {
+    public void logPageWithParams(Context context, String name, Map<Object,Object> parameters) {
     	s.pageName = name;
     	Hashtable<String,String> mergedParameters = mergeParameters(parameters);
     	if (mergedParameters != null) {
@@ -217,13 +218,13 @@ public class LolayOmnitureTracker extends LolayBaseTracker {
     }
 
     @Override
-    public void logException(Throwable throwable) {
+    public void logException(Context context, Throwable throwable) {
     	s.pageName = "Exception";
     	s.track();
     }
 
     @Override
-    public void logException(String errorId, String message, Throwable throwable) {
+    public void logException(Context context, String errorId, String message, Throwable throwable) {
     	s.pageName = "Exception";
     	s.track();
     }

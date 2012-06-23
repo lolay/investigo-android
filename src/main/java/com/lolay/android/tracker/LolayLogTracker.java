@@ -12,26 +12,6 @@ import android.util.Log;
 public class LolayLogTracker extends LolayBaseTracker {
 	private static final String TAG = LolayLogTracker.class.getSimpleName();
 	
-    @Override
-	public void startSession() {
-    	Log.i(TAG, "Start Session");
-	}
-	
-    @Override
-	public void endSession() {
-    	Log.i(TAG, "End Session");
-	}
-
-    @Override
-    public void startSession(Context context) {
-    	Log.i(TAG, "Start Session Context (" + context.getClass().getName() + ")");
-    }
-
-    @Override
-    public void endSession(Context context) {
-    	Log.i(TAG, "End Session Context (" + context.getClass().getName() + ")");
-    }
-
 	private String buildParameters(Map<Object, Object> parameters) {
 		if (parameters == null || parameters.size() == 0) {
 			return "";
@@ -55,32 +35,32 @@ public class LolayLogTracker extends LolayBaseTracker {
 	}
 	
     @Override
-    public void logEvent(String name) {
-    	Log.i(TAG, "Event: " + name);
+    public void logEvent(Context context, String name) {
+		Log.i(TAG, context.getClass().getName() + " Event: " + name);
     }
 
     @Override
-    public void logEventWithParams(String name, Map<Object, Object> parameters) {
-    	Log.i(TAG, "Event: " + name + buildParameters(parameters));
+    public void logEventWithParams(Context context, String name, Map<Object, Object> parameters) {
+		Log.i(TAG, context.getClass().getName() + " Event: " + name + buildParameters(parameters));
     }
 
     @Override
-    public void logPage(String name) {
-    	Log.i(TAG, "Page: " + name);
+    public void logPage(Context context, String name) {
+		Log.i(TAG, context.getClass().getName() + " Page: " + name);
     }
 
     @Override
-    public void logPageWithParams(String name, Map<Object, Object> parameters) {
-    	Log.i(TAG, "Page: " + name + buildParameters(parameters));
+    public void logPageWithParams(Context context, String name, Map<Object, Object> parameters) {
+    	Log.i(TAG, context.getClass().getName() + " Page: " + name + buildParameters(parameters));
     }
 
     @Override
-    public void logException(Throwable throwable) {
-    	Log.i(TAG, "Exception", throwable);
+    public void logException(Context context, Throwable throwable) {
+    	Log.i(TAG, context.getClass().getName() + " Exception", throwable);
     }
 
     @Override
-    public void logException(String errorId, String message, Throwable throwable) {
-    	Log.i(TAG, "Exception: " + errorId + ": " + message, throwable);
+    public void logException(Context context, String errorId, String message, Throwable throwable) {
+    	Log.i(TAG, context.getClass().getName() + " Exception: " + errorId + ": " + message, throwable);
     }
 }
