@@ -126,17 +126,20 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         }
     }
     
-    Map<Object, Object> buildParameters(Map<Object, Object> parameters) {
-        Map<Object, Object> flurryParameters;
-
-        if (parameters == null) {
-            flurryParameters = new HashMap<Object, Object>(1 + (globalParametersValue != null ? globalParametersValue.size() : 0));
-        } else {
-            flurryParameters = parameters;
+    Map<String, String> buildParameters(Map<Object, Object> parameters) {
+        Map<String, String> flurryParameters = new HashMap<String, String>(1 + (globalParametersValue != null ? globalParametersValue.size() : 0));
+        if (parameters != null) {
+        	for(Object o : parameters.keySet()) {
+        		Object v = parameters.get(o);
+        		flurryParameters.put(o.toString(), v.toString());
+        	}
         }
 
         if (globalParametersValue != null && !globalParametersValue.isEmpty()) {
-            flurryParameters.putAll(globalParametersValue);
+        	for(Object o : globalParametersValue.keySet()) {
+        		Object v = globalParametersValue.get(o);
+        		flurryParameters.put(o.toString(), v.toString());
+        	}
         }
 
         flurryParameters.put("platform", platform);
