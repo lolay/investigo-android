@@ -6,6 +6,7 @@ package com.lolay.android.tracker;
 
 import android.content.Context;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.flurry.android.Constants;
@@ -64,8 +65,8 @@ public class LolayFlurryTracker extends LolayBaseTracker {
     
     @Override
     public String getTrackerId() {
-    	return FlurryAgent.getPhoneId();
-    }
+    	return Settings.Secure.ANDROID_ID;
+	}
 
     @Override
     public void logEvent(Context context, String name) {

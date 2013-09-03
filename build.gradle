@@ -25,7 +25,7 @@ sourceSets {
 
 dependencies {
 	provided 'com.google.android:android:2.2.1'
-	provided 'com.flurry:flurry-android:3.0.5'
+	provided 'com.flurry:flurry-android:3.2.2'
 	provided 'com.omniture:appmeasurement-android:2011.6.30'
 	testCompile 'junit:junit:4.8.2'
 }
