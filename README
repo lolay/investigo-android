@@ -1,1 +1,3 @@
-Tracker library for AdMob, Flurry, etc.
+An Android Studio module for helping with analytics tracking.
+
+WARNING: This must be cloned/submoduled into a directory named LolayInvestigo.
