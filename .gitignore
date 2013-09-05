@@ -1,11 +1,5 @@
 build
 target*
 bin
-.classpath
-.project
-.settings
-.externalToolBuilders
 out
 gen
-*.iml
-.idea
