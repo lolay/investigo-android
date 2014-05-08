@@ -15,9 +15,13 @@
 //
 package com.lolay.android.tracker;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.IntentFilter;
+import android.os.Bundle;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class LolayBaseTracker implements LolayTracker {
@@ -150,4 +154,34 @@ public class LolayBaseTracker implements LolayTracker {
     	}
     	return null;
     }
+
+    // Activity life cycle
+    public void onCreate(Activity activity, Bundle savedInstanceState) {
+        // do nothing
+    }
+
+    public void onStart(Activity activity){
+        // do nothing
+    }
+
+    public void onRestart(Activity activity){
+        // do nothing
+    }
+
+    public void onResume(Activity activity){
+        // do nothing
+    }
+
+    public void onPause(Activity activity){
+        // do nothing
+    }
+
+    public void onStop(Activity activity){
+        // do nothing
+    }
+
+    public void onDestroy(Activity activity){
+        // do nothing
+    }
+
 }

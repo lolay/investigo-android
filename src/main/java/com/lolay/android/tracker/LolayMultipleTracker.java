@@ -18,7 +18,9 @@ package com.lolay.android.tracker;
 import java.util.Collection;
 import java.util.Map;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
 public class LolayMultipleTracker extends LolayBaseTracker {
@@ -164,5 +166,48 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     	for (LolayTracker tracker : this.trackers) {
     		tracker.logException(context, errorId, message, throwable);
     	}
+    }
+
+
+    public void onCreate(Activity activity, Bundle savedInstanceState) {
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onCreate(activity, savedInstanceState);
+        }
+    }
+
+    public void onStart(Activity activity){
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onStart(activity);
+        }
+    }
+
+    public void onRestart(Activity activity){
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onRestart(activity);
+        }
+    }
+
+    public void onResume(Activity activity){
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onResume(activity);
+        }
+    }
+
+    public void onPause(Activity activity){
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onPause(activity);
+        }
+    }
+
+    public void onStop(Activity activity){
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onStop(activity);
+        }
+    }
+
+    public void onDestroy(Activity activity){
+        for (LolayTracker tracker : this.trackers) {
+            tracker.onDestroy(activity);
+        }
     }
 }

@@ -15,7 +15,9 @@
 //
 package com.lolay.android.tracker;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 
 import java.util.Map;
 
@@ -41,4 +43,13 @@ public interface LolayTracker {
     public void logException(Context context, String errorId, String message, Throwable throwable);
     public String getTrackerId();
     public String getTrackerId(Class<?> clazz);
+
+    // Activity life cycle hooks.
+    public void onCreate(Activity activity, Bundle savedInstanceState);
+    public void onStart(Activity activity);
+    public void onRestart(Activity activity);
+    public void onResume(Activity activity);
+    public void onPause(Activity activity);
+    public void onStop(Activity activity);
+    public void onDestroy(Activity activity);
 }

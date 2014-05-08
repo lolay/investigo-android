@@ -1,6 +1,8 @@
 package com.lolay.android.tracker;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
 import java.util.Map;
@@ -29,6 +31,7 @@ public class LolayAnalyticsTracker extends LolayBaseTracker {
         options.setDebug(logEnabled);
 
         Analytics.initialize(context, apiKey, options);
+
     }
 
     private Props buildParameters(Map<Object, Object> parameters) {
@@ -92,4 +95,36 @@ public class LolayAnalyticsTracker extends LolayBaseTracker {
     public void logException(Context context, String errorId, String message, Throwable throwable) {
         Analytics.track(context.getClass().getName() + " Exception: " + errorId + ": " + message);
     }
+
+    @Override
+    public void onCreate(Activity activity, Bundle savedInstanceState) {
+        Analytics.onCreate(activity);
+    }
+
+    @Override
+    public void onStart(Activity activity){
+        Analytics.activityStart(activity);
+    }
+
+    @Override
+    public void onRestart(Activity activity){
+        // do nothing
+    }
+
+    @Override
+    public void onResume(Activity activity){
+        Analytics.activityResume(activity);
+    }
+
+    @Override
+    public void onPause(Activity activity){
+        Analytics.activityPause(activity);
+    }
+
+    @Override
+    public void onStop(Activity activity){
+        Analytics.activityStop(activity);
+    }
+
+
 }

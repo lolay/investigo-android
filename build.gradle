@@ -9,8 +9,9 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 repositories {
-    mavenCentral()
+mavenCentral()
     maven { url 'http://maven.lolay.com' }
+	
 }
 
 configurations {
@@ -27,6 +28,6 @@ dependencies {
     provided 'com.google.android:android:2.2.1'
     provided 'com.flurry:flurry-android:3.2.2'
     provided 'com.omniture:appmeasurement-android:2011.6.30'
-	provided 'io.segment.android:analytics-android:0.6.10'
+    provided 'io.segment.android:analytics-android:0.6.11'
     testCompile 'junit:junit:4.8.2'
 }

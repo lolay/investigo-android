@@ -15,8 +15,10 @@
 //
 package com.lolay.android.tracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -25,6 +27,8 @@ import com.flurry.android.FlurryAgent;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.segment.android.Analytics;
 
 public class LolayFlurryTracker extends LolayBaseTracker {
 	private static final String TAG = LolayFlurryTracker.class.getSimpleName();
@@ -86,9 +90,9 @@ public class LolayFlurryTracker extends LolayBaseTracker {
 
     @Override
     public void logEventWithParams(Context context, String name, Map<Object, Object> parameters) {
-		FlurryAgent.onStartSession(context, this.apiKey);
+		//FlurryAgent.onStartSession(context, this.apiKey);
         FlurryAgent.logEvent(name, buildParameters(parameters));
-		FlurryAgent.onEndSession(context);
+		//FlurryAgent.onEndSession(context);
     }
 
     @Override
@@ -98,24 +102,25 @@ public class LolayFlurryTracker extends LolayBaseTracker {
 
     @Override
     public void logPageWithParams(Context context, String name, Map<Object, Object> parameters) {
-		FlurryAgent.onStartSession(context, this.apiKey);
+
+        //FlurryAgent.onStartSession(context, this.apiKey);
 		FlurryAgent.logEvent(name, buildParameters(parameters));
         FlurryAgent.onPageView();
-		FlurryAgent.onEndSession(context);
+		//FlurryAgent.onEndSession(context);
 	}
 
     @Override
     public void logException(Context context, Throwable throwable) {
-		FlurryAgent.onStartSession(context, this.apiKey);
+		//FlurryAgent.onStartSession(context, this.apiKey);
 		FlurryAgent.onError(throwable.getMessage(), throwable.getMessage(), throwable.getClass().getSimpleName());
-		FlurryAgent.onEndSession(context);
+		//FlurryAgent.onEndSession(context);
 	}
 
     @Override
     public void logException(Context context, String errorId, String message, Throwable throwable) {
-		FlurryAgent.onStartSession(context, this.apiKey);
+		//FlurryAgent.onStartSession(context, this.apiKey);
 		FlurryAgent.onError(errorId,message, throwable.getClass().getName());
-		FlurryAgent.onEndSession(context);
+		//FlurryAgent.onEndSession(context);
 	}
 
     public void setGlobalParametersValue(Map<Object, Object> globalParametersValue) {
@@ -166,5 +171,20 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         String systemVersion = Build.VERSION.RELEASE;
         int sdk = Build.VERSION.SDK_INT;
         return String.format("%s %s (%s): %s %d", manufacturer, product, model, systemVersion, sdk);
+    }
+
+
+
+
+    @Override
+    public void onStart(Activity activity){
+        super.onStart(activity);
+        FlurryAgent.onStartSession(activity, this.apiKey);
+    }
+
+    @Override
+    public void onStop(Activity activity){
+        super.onStop(activity);
+        FlurryAgent.onEndSession(activity);
     }
 }
