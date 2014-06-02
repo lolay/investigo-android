@@ -1,0 +1,56 @@
+apply plugin: 'android-library'
+apply plugin: 'maven-publish'
+
+repositories {
+    mavenLocal()
+	mavenCentral()
+	maven {
+		url "http://maven.lolay.com"
+	}
+}
+
+android {
+	compileSdkVersion Integer.parseInt(appCompileSdkVersion)
+    buildToolsVersion appBuildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(appMinSdkVersion)
+        targetSdkVersion Integer.parseInt(appTargetSdkVersion)
+        versionCode Integer.parseInt(appVersionCode)
+        versionName "$versionCode"
+    }	
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:19.+'
+	compile 'com.google.android:android:2.2.1'
+    compile 'com.flurry:flurry-android:3.2.2'
+    compile 'com.omniture:appmeasurement-android:2011.6.30'
+    compile 'io.segment.android:analytics-android:0.6.11'
+}
+
+task printMavenDir{
+    println mavenLolayDirectory
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId mavenLolayGroupId
+            artifactId mavenLolayArtifactId
+            version android.defaultConfig.versionName
+
+            File buildFile = new File("$buildDir/libs")
+            if (buildFile.isDirectory()) {
+                artifact buildFile.listFiles().first()
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url mavenLolayDirectory // See USER_HOME/.gradle/gradle.properties (has precedence) or project/gradle.properties
+        }
+    }
+}

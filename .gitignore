@@ -1,5 +1,4 @@
-build
-target*
-bin
-out
-gen
+.gradle
+/local.properties
+/.idea/workspace.xml
+.DS_Store
