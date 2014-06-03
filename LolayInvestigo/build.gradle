@@ -39,7 +39,8 @@ publishing {
         maven(MavenPublication) {
             groupId mavenLolayGroupId
             artifactId mavenLolayArtifactId
-            version android.defaultConfig.versionName
+			
+            version android.defaultConfig.versionName + (Integer.parseInt(mavenSnapshot) == 0 ? '' : '-SNAPSHOT')
 
             File buildFile = new File("$buildDir/libs")
             if (buildFile.isDirectory()) {
