@@ -79,7 +79,23 @@ public class LolayBaseTracker implements LolayTracker {
     public void removeGlobalParameter(Object key) {
         // do nothing
     }
-    
+
+    @Override
+    public void logRegistration(Context context, Map<Object, Object> registrationData) {
+        // do nothing
+    }
+
+    @Override
+    public void logPurchase(Context context, Map<Object, Object> purchaseData) {
+        // do nothing
+    }
+
+    @Override
+    public void logTiming(Context context, Map<Object, Object> timingData)
+    {
+        // do nothing
+    }
+
     @Override
     public void logEvent(Context context, String name) {
         // do nothing
@@ -146,7 +162,7 @@ public class LolayBaseTracker implements LolayTracker {
     public String getTrackerId() {
     	return null;
     }
-    
+
     @Override
     public String getTrackerId(Class<?> clazz) {
     	if (clazz.isInstance(this)) {

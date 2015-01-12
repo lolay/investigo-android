@@ -33,6 +33,9 @@ public interface LolayTracker {
     public void setGlobalParameters(Map<Object, Object> globalParameters);
     public void setGlobalParameter(Object key, Object object);
     public void removeGlobalParameter(Object key);
+    public void logRegistration(Context context, Map<Object, Object> registrationData);
+    public void logPurchase(Context context, Map<Object, Object> purchaseData);
+    public void logTiming(Context context, Map<Object, Object> timingData);
     public void logEvent(Context context, String name);
     public void logEventWithParams(Context context, String name, Map<Object, Object> parameters);
     public void logEventWithObjectsAndKeys(Context context, String name, Object... objectsAndKeys);

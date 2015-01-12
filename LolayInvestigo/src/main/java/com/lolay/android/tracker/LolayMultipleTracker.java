@@ -125,7 +125,15 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     		tracker.removeGlobalParameter(key);
     	}
     }
-    
+
+    @Override
+    public void logTiming(Context context, Map<Object, Object> timingData)
+    {
+        for (LolayTracker tracker : this.trackers) {
+            tracker.logTiming(context, timingData);
+        }
+    }
+
     @Override
     public void logEvent(Context context, String name) {
     	for (LolayTracker tracker : this.trackers) {
@@ -138,6 +146,20 @@ public class LolayMultipleTracker extends LolayBaseTracker {
     	for (LolayTracker tracker : this.trackers) {
     		tracker.logEventWithParams(context, name, parameters);
     	}
+    }
+
+    @Override
+    public void logRegistration(Context context, Map<Object, Object> parameters) {
+        for (LolayTracker tracker : this.trackers) {
+            tracker.logRegistration(context, parameters);
+        }
+    }
+
+    @Override
+    public void logPurchase(Context context, Map<Object, Object> parameters) {
+        for (LolayTracker tracker : this.trackers) {
+            tracker.logPurchase(context, parameters);
+        }
     }
 
     @Override

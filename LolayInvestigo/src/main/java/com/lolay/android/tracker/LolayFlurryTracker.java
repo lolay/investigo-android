@@ -173,9 +173,6 @@ public class LolayFlurryTracker extends LolayBaseTracker {
         return String.format("%s %s (%s): %s %d", manufacturer, product, model, systemVersion, sdk);
     }
 
-
-
-
     @Override
     public void onStart(Activity activity){
         super.onStart(activity);

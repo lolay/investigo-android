@@ -35,6 +35,7 @@ dependencies {
     compile 'com.flurry:flurry-android:3.2.2'
     compile 'com.omniture:appmeasurement-android:2011.6.30'
     compile 'io.segment.android:analytics-android:0.6.11'
+    compile 'com.google.android.gms:play-services:6.5.+'
 }
 
 task printMavenDir{
@@ -49,7 +50,8 @@ publishing {
 			
             version android.defaultConfig.versionName + snapshotString
 
-            File buildFile = new File("$buildDir/libs")
+            File buildFile = new File("$buildDir/outputs/aar")
+
             if (buildFile.isDirectory()) {
                 artifact buildFile.listFiles().first()
             }
