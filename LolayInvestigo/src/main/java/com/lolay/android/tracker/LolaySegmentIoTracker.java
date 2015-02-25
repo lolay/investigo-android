@@ -3,39 +3,45 @@ package com.lolay.android.tracker;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+
+import com.segment.analytics.Analytics;
+import com.segment.analytics.Options;
+import com.segment.analytics.Properties;
+import com.segment.analytics.Traits;
 
 import java.util.Map;
 
-import io.segment.android.Analytics;
-import io.segment.android.Options;
-import io.segment.android.models.Traits;
-import io.segment.android.models.Props;
 
 /**
  * Created by Kaz on 4/29/2014.
  *
- * Wrap around class for segmen.io interface. This class implements LolayTracker interface for segmen.io (analytics)
+ * @update Josh Musselwhite on 2/24/2015. Updated segment apis and changed class name
+ *
+ * Wrap around class for segment.io interface. This class implements LolayTracker interface for segmen.io (analytics)
  */
-public class LolayAnalyticsTracker extends LolayBaseTracker {
+public class LolaySegmentIoTracker extends LolayBaseTracker {
     private static final String TAG = LolayLogTracker.class.getSimpleName();
 
-    private Traits traits = new Traits();
+    private Traits traits;
     private String userId;
+	private Analytics analytics;
 
     private Traits getTraits() { return traits; }
     private String getUserId() { return userId; }
 
-    public LolayAnalyticsTracker(Context context, String apiKey, String version, Boolean logEnabled) {
-        Options options = new Options();
-        options.setDebug(logEnabled);
+    public LolaySegmentIoTracker(Context context, String apiKey, String version, Boolean logEnabled) {
+		traits = new Traits();
+		Analytics.Builder builder = new Analytics.Builder(context, apiKey);
+		builder.debugging(logEnabled);
+		Analytics.setSingletonInstance(analytics = builder.build());
 
-        Analytics.initialize(context, apiKey, options);
+//		options.setDebug(logEnabled);
+//        Analytics.initialize(context, apiKey, options);
 
     }
 
-    private Props buildParameters(Map<Object, Object> parameters) {
-        Props props =  new Props();
+    private Properties buildParameters(Map<Object, Object> parameters) {
+		Properties props =  new Properties();
 
         if (parameters == null || parameters.size() == 0) {
             return props;
@@ -49,9 +55,9 @@ public class LolayAnalyticsTracker extends LolayBaseTracker {
         return props;
     }
 
-    private void updateIdentity()
-    {
-        Analytics.identify(getUserId(), getTraits());
+    private void updateIdentity() {
+		analytics.identify(getUserId(), getTraits(), new Options());
+//        Analytics.identify(getUserId(), getTraits());
     }
 
     @Override
@@ -68,42 +74,43 @@ public class LolayAnalyticsTracker extends LolayBaseTracker {
 
     @Override
     public void logEvent(Context context, String name) {
-        Analytics.track(name);
+		Analytics.with(context).track(name);
+//        Analytics.track(name);
     }
 
     @Override
     public void logEventWithParams(Context context, String name, Map<Object, Object> parameters) {
-        Analytics.track(name, buildParameters(parameters));
+        Analytics.with(context).track(name, buildParameters(parameters));
     }
 
     @Override
     public void logPage(Context context, String name) {
-        Analytics.screen(name);
+        Analytics.with(context).screen(name, name);
     }
 
     @Override
     public void logPageWithParams(Context context, String name, Map<Object, Object> parameters) {
-        Analytics.screen(name, buildParameters(parameters));
+        Analytics.with(context).screen(name, name, buildParameters(parameters));
     }
 
     @Override
     public void logException(Context context, Throwable throwable) {
-        Analytics.track(context.getClass().getName() + " Exception");
+        Analytics.with(context).track(context.getClass().getName() + " Exception");
     }
 
     @Override
     public void logException(Context context, String errorId, String message, Throwable throwable) {
-        Analytics.track(context.getClass().getName() + " Exception: " + errorId + ": " + message);
+        Analytics.with(context).track(context.getClass().getName() + " Exception: " + errorId + ": " + message);
     }
 
     @Override
     public void onCreate(Activity activity, Bundle savedInstanceState) {
-        Analytics.onCreate(activity);
+//        Analytics.with(ac).onCreate(activity);
     }
 
     @Override
     public void onStart(Activity activity){
-        Analytics.activityStart(activity);
+//        Analytics.activityStart(activity);
     }
 
     @Override
@@ -113,17 +120,17 @@ public class LolayAnalyticsTracker extends LolayBaseTracker {
 
     @Override
     public void onResume(Activity activity){
-        Analytics.activityResume(activity);
+//        Analytics.activityResume(activity);
     }
 
     @Override
     public void onPause(Activity activity){
-        Analytics.activityPause(activity);
+//        Analytics.activityPause(activity);
     }
 
     @Override
     public void onStop(Activity activity){
-        Analytics.activityStop(activity);
+//        Analytics.activityStop(activity);
     }
 
 

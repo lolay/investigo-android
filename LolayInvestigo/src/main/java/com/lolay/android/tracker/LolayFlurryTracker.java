@@ -18,7 +18,6 @@ package com.lolay.android.tracker;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -27,8 +26,6 @@ import com.flurry.android.FlurryAgent;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import io.segment.android.Analytics;
 
 public class LolayFlurryTracker extends LolayBaseTracker {
 	private static final String TAG = LolayFlurryTracker.class.getSimpleName();

@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\lolay\climate\LolayInvestigo" />
-            <option value="C:\lolay\climate\LolayInvestigo\LolayInvestigo" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/LolayInvestigo" />
           </set>
         </option>
       </GradleProjectSettings>
