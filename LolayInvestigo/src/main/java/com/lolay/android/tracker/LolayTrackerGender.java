@@ -32,7 +32,7 @@ public enum LolayTrackerGender {
             case 1:
                 return MALE;
             case 2:
-                return MALE;
+                return FEMALE;
             default:
                 return UNKNOWN;
         }
